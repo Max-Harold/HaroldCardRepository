@@ -14,7 +14,9 @@
     "framer-motion": "^11.15.0",
     "motion": "^11.15.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-native-swipe-gestures": "^1.0.5",
+    "react-swipeable": "^7.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

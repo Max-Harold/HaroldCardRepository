@@ -2,9 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+#parent {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+#center-div {
+  display: flex;
+  justify-content: center;  /* Horizontal centering */
+  align-items: center;      /* Vertical centering */
+  height: 100vh;    
+  width: 10vw;        /* Full viewport height */
+  background: blue;
+}
+
 
 .flip-card {
-  perspective: 1000px;
+  perspective: 4000px;
 }
 
 .flip-card-inner {
@@ -22,8 +39,9 @@
 }
 
 .arrowButton {
-  font-size: 500%;
+  font-size: 400%;
   padding: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 :root {
@@ -56,6 +74,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;  
+  background-color: #1a1a1a;
 }
 
 h1 {

@@ -1,5 +1,5 @@
-import {useState} from "react"
-import {motion} from "framer-motion"
+// import {SyntheticEvent, useState} from "react"
+// import {motion} from "framer-motion"
 
 import Edy_Back from '../assets/Edy_Back.png'
 import Edy_Front from '../assets/Edy_Front.png'
@@ -19,6 +19,7 @@ import Rachel_Back from '../assets/Rachel_Back.png'
 import Rachel_Front from '../assets/Rachel_Front.png'
 import Sasha_Back from '../assets/Sasha_Back.png'
 import Sasha_Front from '../assets/Sasha_Front.png'
+// import React from "react"
 
 
 type CardImageMap = {
@@ -46,64 +47,86 @@ const cardImgs: CardImageMap = {
     'Sasha_Front': Sasha_Front,
 }
 
+import React, { Component } from "react";
+import { motion } from "framer-motion";
+
 type CardProps = {
     name: string;
     className?: string;
 }
 
-const animationDuration: number = .1
-
-function Card(props: CardProps) {
-    const name: string = props.name
-    const className = props.className ?? "" 
-    console.log(className)
-
-    const [isFlipped, setIsFlipped] = useState(false)
-    const [isAnimating, setIsAnimating] = useState(false)
-
-    const backImage = cardImgs[name + "_Back"]
-    const frontImage = cardImgs[name+"_Front"]
-
-    const width: string = '75vh'
-    const height: string = '100vh'
-
-    function handleFlip() {
-        if (!isAnimating) {
-            setIsFlipped(!isFlipped)
-            setIsAnimating(true)
-        }
-    }
-
-
-    return (
-        <motion.div className={`absolute items-center justify-center scale-90 w-[75vh] h-screen cursor-pointer` + className}
-            >
-            <div className={`flip-card h-screen w-[${width}]`} onClick={handleFlip}>
-                
-                <motion.div
-                    className={`flip-card-inner w-[${width}] h-screen`}
-                    initial={false}
-                    animate={{rotateY: isFlipped ? 180 : 360}}
-                    transition={{duration: animationDuration, animationDirection: "normal"}}
-                    onAnimationComplete={() => setIsAnimating(false)}>
-                    <div 
-                        className=
-                        {`flip-card-back w-[${width}] h-[${height}] bg-cover bg-center border-[1px] text-white`}
-                            style={{backgroundImage: `url(${backImage})`}}>
-                
-                    </div>
-                    <div 
-                        className=
-                        {`flip-card-front w-[${width}] h-[${height}] bg-cover bg-center border-[1px] text-white`}
-                        style={{backgroundImage: `url(${frontImage})`}}>
-
-                    </div>
-                    
-                </motion.div>
-
-            </div>
-        </motion.div>
-    )
+type CardState = {
+    isFlipped: boolean;
+    isAnimating: boolean;
+    
 }
 
-export default Card
+class Card extends Component<CardProps, CardState> {
+
+    constructor(props: CardProps) {
+        super(props);
+        this.state = {
+            isFlipped: false,
+            isAnimating: false,
+        };
+    }
+
+    handleFlip = () => {
+        const { isAnimating } = this.state;
+        if (!isAnimating) {
+            this.setState((prevState) => ({
+                isFlipped: !prevState.isFlipped,
+                isAnimating: true,
+            }));
+        }
+    };
+
+    handleAnimationComplete = () => {
+        this.setState({ isAnimating: false });
+    };
+
+
+    render() {
+        const { name, className = "" } = this.props;
+        const { isFlipped } = this.state;
+
+       // const {marginLeft, marginRight} = this.props
+
+        const backImage = cardImgs[name + "_Back"];
+        const frontImage = cardImgs[name + "_Front"];
+
+        const width = "75vh";
+        const height = "100vh";
+
+        return (
+            <motion.div
+                className={`relative items-center justify-center scale-90 w-[75vh] h-screen cursor-pointer ${className}`}
+                
+            >
+                <div
+                    className={`flip-card h-screen w-[${width}]`}
+                    onClick={this.handleFlip}
+                >
+                    <motion.div
+                        className={`flip-card-inner w-[${width}] h-screen`}
+                        initial={false}
+                        animate={{ rotateY: isFlipped ? 180 : 360 }}
+                        transition={{ duration: .01, animationDirection: "normal" }}
+                        onAnimationComplete={this.handleAnimationComplete}
+                    >
+                        <div
+                            className={`flip-card-back w-[${width}] h-[100%] bg-cover bg-center border-[1px] text-white`}
+                            style={{ backgroundImage: `url(${backImage})` }}
+                        ></div>
+                        <div
+                            className={`flip-card-front w-[${width}] h-[100%] bg-cover bg-center border-[1px] text-white`}
+                            style={{ backgroundImage: `url(${frontImage})` }}
+                        ></div>
+                    </motion.div>
+                </div>
+            </motion.div>
+        );
+    }
+}
+
+export default Card;
