@@ -63,7 +63,7 @@ class App extends Component<{}, AppState> {
       <Swipeable 
         onLeftSwipe={this.onRight}
         onRightSwipe={this.onLeft}>
-        <p className="text-center font-serif text-3xl z-50">Click on Card to See Back</p>
+        <p className="text-center font-serif text-3xl z-50 text-white">Click on Card to See Back</p>
         <ArrowButtons onLeft={this.onLeft} onRight={this.onRight} />
         <CardSwitcher currentIndex={currentIndex} nextIndex={nextIndex} isAnimating={isAnimating} onAnimationFinished={this.onAnimationFinished}/>
       </Swipeable>
