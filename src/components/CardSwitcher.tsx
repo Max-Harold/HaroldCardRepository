@@ -26,7 +26,7 @@ class CardSwitcher extends Component<CardSwitcherProps>{
         }
 
         return (
-            <div className='relative flex justify-center items-center w-screen h-screen'>
+            <div className='relative flex justify-center items-center w-screen h-[80%]'>
                 {/* Current Card (going out) */}
                 {isAnimating 
                     ? (

@@ -99,7 +99,7 @@ class Card extends Component<CardProps, CardState> {
 
         return (
             <motion.div
-                className={`relative items-center justify-center scale-90 w-[75vh] h-screen cursor-pointer ${className}`}
+                className={`relative items-center justify-center scale-75 w-[75vh] h-screen cursor-pointer ${className}`}
                 
             >
                 <div
