@@ -47,7 +47,7 @@ const cardImgs: CardImageMap = {
     'Sasha_Front': Sasha_Front,
 }
 
-import React, { Component } from "react";
+import  { Component } from "react";
 import { motion } from "framer-motion";
 
 type CardProps = {
@@ -96,7 +96,6 @@ class Card extends Component<CardProps, CardState> {
         const frontImage = cardImgs[name + "_Front"];
 
         const width = "75vh";
-        const height = "100vh";
 
         return (
             <motion.div
