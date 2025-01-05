@@ -1,13 +1,7 @@
-import React, { Component, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Card from './components/Card'
+import { Component } from 'react'
+
 import CardSwitcher from './components/CardSwitcher'
-import {motion} from 'framer-motion'
 import ArrowButtons from './components/ArrowButtons'
-import AnimatedSquares from './components/AnimatedSquares'
-import SwipeableDemo from './components/SomeComponent'
-import { SwipeableHandlers, useSwipeable } from 'react-swipeable'
 import { Swipeable } from './components/Swipeable'
 
 interface AppState {
@@ -59,10 +53,6 @@ class App extends Component<{}, AppState> {
         }
       })  
     }
-  }
-
-  handleSwipe = (direction: string) => {
-
   }
 
   render() {
